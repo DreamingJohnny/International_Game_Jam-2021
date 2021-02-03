@@ -314,7 +314,7 @@ Transform:
   - {fileID: 815037193}
   - {fileID: 1175667917}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &281034131
 GameObject:
@@ -1053,7 +1053,7 @@ Transform:
   - {fileID: 577492900}
   - {fileID: 2060626781}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &802902096
 GameObject:
@@ -1085,7 +1085,7 @@ Transform:
   m_LocalScale: {x: 200, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &802902098
 SpriteRenderer:
@@ -1328,7 +1328,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1129960586
 GameObject:
@@ -1389,7 +1389,7 @@ Transform:
   - {fileID: 1575758089}
   - {fileID: 1457768188}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &1129960590
 Rigidbody2D:
@@ -2143,7 +2143,7 @@ Transform:
   - {fileID: 1476378046}
   - {fileID: 596728382}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1575758088
 GameObject:
@@ -2302,63 +2302,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1581911106}
   m_CullTransparentMesh: 1
---- !u!1001 &1590373876
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3401419957188069951, guid: 07952d78a9b4726458687aa475b2a0f3, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3401419957188069951, guid: 07952d78a9b4726458687aa475b2a0f3, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -64.95715
-      objectReference: {fileID: 0}
-    - target: {fileID: 3401419957188069951, guid: 07952d78a9b4726458687aa475b2a0f3, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -2.3343992
-      objectReference: {fileID: 0}
-    - target: {fileID: 3401419957188069951, guid: 07952d78a9b4726458687aa475b2a0f3, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3401419957188069951, guid: 07952d78a9b4726458687aa475b2a0f3, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3401419957188069951, guid: 07952d78a9b4726458687aa475b2a0f3, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3401419957188069951, guid: 07952d78a9b4726458687aa475b2a0f3, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3401419957188069951, guid: 07952d78a9b4726458687aa475b2a0f3, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3401419957188069951, guid: 07952d78a9b4726458687aa475b2a0f3, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3401419957188069951, guid: 07952d78a9b4726458687aa475b2a0f3, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3401419957188069951, guid: 07952d78a9b4726458687aa475b2a0f3, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5744094535347418553, guid: 07952d78a9b4726458687aa475b2a0f3, type: 3}
-      propertyPath: m_Name
-      value: Zombie
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 07952d78a9b4726458687aa475b2a0f3, type: 3}
 --- !u!1 &1654069260
 GameObject:
   m_ObjectHideFlags: 0
@@ -3208,10 +3151,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4505bb0ea7e61f8409dd18c5e71f6af3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBetweenWaves: 0
+  timeBetweenWaves: 10
   currentTime: 0
   bankerSpacing: 0.5
-  amountInWave: 4
+  amountInWave: 1
   bankersWave: []
   banker: {fileID: 6739906899353719918, guid: 886d8531d5aac3842bae41fbdf80de19, type: 3}
 --- !u!4 &8702383195727967158
@@ -3227,7 +3170,7 @@ Transform:
   m_Children:
   - {fileID: 1204037935}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &8702383195727967159
 Rigidbody2D:
