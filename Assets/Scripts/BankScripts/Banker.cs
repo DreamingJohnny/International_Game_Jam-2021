@@ -1,19 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Banker : MonoBehaviour
 {
-    public float speed = 10;
-    private Vector2 movement;
-
+    [Header("Properties")]
+    public float speed;
     public float damage;
+    [Space]
+    public LayerMask layer;
+
+    private Vector2 movement;
 
     private bool attackMode;
     private float timer;
-
-    public LayerMask layer;
-
 
     void Start()
     {
@@ -22,6 +20,15 @@ public class Banker : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (attackMode == false)
+        {
+            movement = new Vector2(1 * 2, -3);
+
+            movement *= Time.fixedDeltaTime;
+
+            transform.Translate(movement);
+        }
+
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right, 1, layer);
 
         Debug.DrawRay(transform.position, Vector2.right * 1, Color.red);
@@ -32,16 +39,12 @@ public class Banker : MonoBehaviour
             {
                 Attack(hit.collider.gameObject);
             }
+            else
+            {
+                attackMode = false;
+            }
         }
 
-        if (attackMode == false)
-        {
-            movement = new Vector2(1 * 2, -3);
-
-            movement *= Time.fixedDeltaTime;
-
-            transform.Translate(movement);
-        }
     }
 
     void Attack(GameObject enemy)
@@ -52,7 +55,7 @@ public class Banker : MonoBehaviour
 
         if (timer >= 2 && attackMode == true)
         {
-            enemy.GetComponent<Health>().ModifyHealth(-10);
+            enemy.GetComponent<Health>().ModifyHealth(damage);
 
             if (!enemy.gameObject.activeSelf)
             {

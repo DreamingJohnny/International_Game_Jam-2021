@@ -1,39 +1,25 @@
 using UnityEngine;
+using System.Collections;
 
 public class Zombie : MonoBehaviour
 {
     [Header("Properties")]
+    public bool attackMode;
+    [Space]
     public LayerMask layer;
 
     private Vector2 movement;
-
-    private bool attackMode;
     private float timer;
-
-    private float attackTime;
-    private float direction;
-    private float lengthOfWalk;
+    private bool doneOnce;
 
     void Start()
     {
-        //StartCoroutine(ZombieWander());
+        doneOnce = false;
         attackMode = false;
     }
 
     private void FixedUpdate()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.left, 1, layer);
-
-        Debug.DrawRay(transform.position, Vector2.left * 1, Color.red);
-
-        if (hit.collider != null)
-        {
-            if (hit.collider.tag == "Enemy")
-            {
-                Attack(hit.collider.gameObject);
-            }
-        }
-
         if (attackMode == false)
         {
             movement = new Vector2(-1 * 2, -3);
@@ -42,11 +28,29 @@ public class Zombie : MonoBehaviour
 
             transform.Translate(movement);
         }
+
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.left, 1.5f, layer);
+
+        Debug.DrawRay(transform.position, Vector2.left * 1.5f, Color.red);
+
+        if (hit.collider != null)
+        {
+            Attack(hit.collider.gameObject);
+        }
+        else
+        {
+            if (doneOnce == false)
+            {
+                StartWalking();
+            }
+        }
+
     }
 
     private void Attack(GameObject enemy)
     {
         attackMode = true;
+        doneOnce = false;
 
         timer += Time.deltaTime;
 
@@ -56,7 +60,10 @@ public class Zombie : MonoBehaviour
 
             if (!enemy.gameObject.activeSelf)
             {
-                attackMode = false;
+                if (doneOnce == true)
+                {
+                    StartWalking();
+                }
             }
 
             // animation of attack
@@ -65,21 +72,19 @@ public class Zombie : MonoBehaviour
         }
     }
 
-    //private IEnumerator ZombieWander()
-    //{
-    //    direction = Random.Range(-1, 2);
-    //    lengthOfWalk = Random.Range(3, 7);
+    void StartWalking()
+    {
+        attackMode = false;
+        StartCoroutine(ZombieWalkDelay());
 
-    //    Debug.Log("Walking Time this cycle: " + lengthOfWalk);
-    //    Debug.Log("Direction this cycle: " + direction);
+        doneOnce = true;
+    }
 
-    //    if (direction == 0)
-    //    {
-    //        lengthOfWalk = 3;
-    //    }
+    private IEnumerator ZombieWalkDelay()
+    {
+        float tempNumber = Random.Range(0.0f, 1.5f);
+        yield return new WaitForSeconds(tempNumber);
+        print(tempNumber);
 
-    //    yield return new WaitForSeconds(lengthOfWalk);
-
-    //    StartCoroutine(ZombieWander());
-    //}
+    }
 }

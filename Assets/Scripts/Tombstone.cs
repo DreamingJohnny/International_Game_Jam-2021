@@ -13,6 +13,7 @@ public class Tombstone : MonoBehaviour
     public TMP_Text pressE;
     [Space]
     public GameObject zombie;
+    public GameObject graveDigger;
 
     private bool canCount;
     private bool inCollider;
@@ -22,6 +23,7 @@ public class Tombstone : MonoBehaviour
     {
         displayTimer.gameObject.SetActive(false);
         pressE.gameObject.SetActive(false);
+        graveDigger.SetActive(false);
 
         timer = tombstoneTime;
 
@@ -40,9 +42,10 @@ public class Tombstone : MonoBehaviour
 
             if (timer <= 0)
             {
-                Instantiate(zombie, transform.position + new Vector3(2, 0, 0), Quaternion.identity);
+                Instantiate(zombie, transform.position + new Vector3(0, -2.4f, 0), Quaternion.identity);
 
                 displayTimer.gameObject.SetActive(false);
+                graveDigger.SetActive(false);
 
                 timer = tombstoneTime;
 
@@ -88,6 +91,7 @@ public class Tombstone : MonoBehaviour
 
     private void StartTombstone()
     {
+        graveDigger.SetActive(true);
         displayTimer.gameObject.SetActive(true);
         pressE.gameObject.SetActive(false);
 
