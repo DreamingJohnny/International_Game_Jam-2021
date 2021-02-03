@@ -146,10 +146,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  damage: 0
+  damage: 10
   layer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
 --- !u!114 &8200673402880224273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,5 +162,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d91e9dbca82f25a4e90a031a921c5829, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 0
-  internalHealth: 0
+  maxHealth: 100
+  currentHealth: 0
+  healthBar: {fileID: 0}
