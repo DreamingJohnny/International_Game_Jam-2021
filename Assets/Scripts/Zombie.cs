@@ -6,9 +6,13 @@ public class Zombie : MonoBehaviour
     [Header("Properties")]
     public bool attackMode;
     [Space]
+    public float speed;
+    public float damage;
+    [Space]
     public LayerMask layer;
 
     private Vector2 movement;
+
     private float timer;
     private bool doneOnce;
 
@@ -22,7 +26,7 @@ public class Zombie : MonoBehaviour
     {
         if (attackMode == false)
         {
-            movement = new Vector2(-1 * 2, -3);
+            movement = new Vector2(-1 * speed, -3);
 
             movement *= Time.fixedDeltaTime;
 
@@ -44,7 +48,6 @@ public class Zombie : MonoBehaviour
                 StartWalking();
             }
         }
-
     }
 
     private void Attack(GameObject enemy)

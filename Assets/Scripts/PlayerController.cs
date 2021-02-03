@@ -38,15 +38,15 @@ public class PlayerController : MonoBehaviour
         Vector2 movement = new Vector2(inputX * speed, -3);
         movement *= Time.fixedDeltaTime;
 
-        //if (inputX == 1)
-        //{
-        //    sprite.flipX = false;
-        //}
+        if (inputX == 1)
+        {
+            sprite.flipX = false;
+        }
 
-        //if (inputX == -1)
-        //{
-        //    sprite.flipX = true;
-        //}
+        if (inputX == -1)
+        {
+            sprite.flipX = true;
+        }
 
         transform.Translate(movement);
 

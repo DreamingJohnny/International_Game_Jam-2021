@@ -1,8 +1,11 @@
 using UnityEngine;
+using System.Collections;
 
 public class Banker : MonoBehaviour
 {
     [Header("Properties")]
+    public bool attackMode;
+    [Space]
     public float speed;
     public float damage;
     [Space]
@@ -10,11 +13,12 @@ public class Banker : MonoBehaviour
 
     private Vector2 movement;
 
-    private bool attackMode;
     private float timer;
+    private bool doneOnce;
 
     void Start()
     {
+        doneOnce = false;
         attackMode = false;
     }
 
@@ -22,7 +26,7 @@ public class Banker : MonoBehaviour
     {
         if (attackMode == false)
         {
-            movement = new Vector2(1 * 2, -3);
+            movement = new Vector2(1 * speed, -3);
 
             movement *= Time.fixedDeltaTime;
 
@@ -35,44 +39,56 @@ public class Banker : MonoBehaviour
 
         if (hit.collider != null)
         {
-            if (hit.collider.tag == ("Zombie") || hit.collider.tag == ("Homebase"))
-            {
-                Attack(hit.collider.gameObject);
-            }
-            else
-            {
-                attackMode = false;
-            }
+            Attack(hit.collider.gameObject);
         }
+        else
+        {
+            if (doneOnce == false)
+            {
+                StartWalking();
+            }
 
+        }
     }
-
-    void Attack(GameObject enemy)
+    private void Attack(GameObject enemy)
     {
         attackMode = true;
+        doneOnce = false;
 
         timer += Time.deltaTime;
 
         if (timer >= 2 && attackMode == true)
         {
-            enemy.GetComponent<Health>().ModifyHealth(damage);
+            enemy.GetComponent<Health>().ModifyHealth(-10);
 
             if (!enemy.gameObject.activeSelf)
             {
-                attackMode = false;
+                if (doneOnce == true)
+                {
+                    StartWalking();
+                }
             }
 
             // animation of attack
 
             timer = 0;
         }
+    }
 
-        //First, check if within range of homestead/building. If they are, then attack that.
-        //Otherwise, next step is to check if within reach of zombies,
-        //If they are, attack zombies,
-        //In either of these cases, change (is attacking bool).
+    void StartWalking()
+    {
+        attackMode = false;
+        StartCoroutine(ZombieWalkDelay());
 
-        //else... just move.
-        //this should throw/change bool for enemies aswell, best if used by/on other script, as component, both zombies and bankers may use the same script after all.
+        doneOnce = true;
+    }
+
+    private IEnumerator ZombieWalkDelay()
+    {
+        float tempNumber = Random.Range(0.0f, 1.5f);
+        yield return new WaitForSeconds(tempNumber);
+        print(tempNumber);
+
     }
 }
+

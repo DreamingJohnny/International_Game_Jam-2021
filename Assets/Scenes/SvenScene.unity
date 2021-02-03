@@ -1426,6 +1426,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   sprite: {fileID: 1575758090}
+  playerDamage: -20
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1146863445
 GameObject:
   m_ObjectHideFlags: 0
@@ -3191,7 +3195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 150
   currentHealth: 0
-  healthBar: {fileID: 0}
+  healthBar: {fileID: 642145135}
 --- !u!114 &8702383195727967157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3204,8 +3208,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4505bb0ea7e61f8409dd18c5e71f6af3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waveTime: 10
+  timeBetweenWaves: 0
   currentTime: 0
+  bankerSpacing: 0.5
+  amountInWave: 4
+  bankersWave: []
   banker: {fileID: 6739906899353719918, guid: 886d8531d5aac3842bae41fbdf80de19, type: 3}
 --- !u!4 &8702383195727967158
 Transform:
