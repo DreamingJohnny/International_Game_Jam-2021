@@ -22,9 +22,9 @@ public class Zombie : MonoBehaviour
 
     private void FixedUpdate()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.left, 2, layer);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.left, 1, layer);
 
-        Debug.DrawRay(transform.position, Vector2.left * 2, Color.red);
+        Debug.DrawRay(transform.position, Vector2.left * 1, Color.red);
 
         if (hit.collider != null)
         {

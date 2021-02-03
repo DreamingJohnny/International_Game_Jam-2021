@@ -20,7 +20,9 @@ public class Bank : MonoBehaviour
         if ( currentTime >= waveTime )
         {
             Instantiate(banker, transform.position, Quaternion.identity);
-            
+
+            banker.transform.position = new Vector3(transform.position.x, transform.position.y - 3);
+
             currentTime = 0;
         }
 

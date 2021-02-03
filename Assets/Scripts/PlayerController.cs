@@ -6,9 +6,13 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Properties")]
     public float speed = 10;
+
+    [Header("References")]
+    public SpriteRenderer sprite;
+
+    private float inputX;
     private bool stopMovement = true;
     private float dashCooldown;
-    public float inputX;
     private BoxCollider2D playerCollider;
 
     private void Start()
@@ -22,9 +26,19 @@ public class PlayerController : MonoBehaviour
         {
             inputX = Input.GetAxisRaw("Horizontal");
         }
-        
+
         Vector2 movement = new Vector2(inputX * speed, -3);
         movement *= Time.fixedDeltaTime;
+
+        if (inputX == 1)
+        {
+            sprite.flipX = false; 
+        }
+
+        if (inputX == -1)
+        {
+            sprite.flipX = true;
+        }
 
         transform.Translate(movement);
 
@@ -51,6 +65,4 @@ public class PlayerController : MonoBehaviour
         stopMovement = true;
         speed = speed - 20f;
     }
-
-    
 }
