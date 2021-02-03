@@ -1,12 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Zombie : MonoBehaviour
 {
+    [Header("Properties")]
+    public LayerMask layer;
+
     private Vector2 movement;
+
     private bool attackMode;
     private float timer;
+
     private float attackTime;
     private float direction;
     private float lengthOfWalk;
@@ -14,22 +17,23 @@ public class Zombie : MonoBehaviour
     void Start()
     {
         //StartCoroutine(ZombieWander());
-    }
-
-    private void Update()
-    {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.left, 8);
-
-        Debug.DrawRay(transform.position, Vector2.left * 8, Color.red);
-
-        if (hit.collider.CompareTag("Enemy"))
-        {
-            Attack(hit.collider.gameObject);
-        }
+        attackMode = false;
     }
 
     private void FixedUpdate()
     {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.left, 2, layer);
+
+        Debug.DrawRay(transform.position, Vector2.left * 2, Color.red);
+
+        if (hit.collider != null)
+        {
+            if (hit.collider.tag == "Enemy")
+            {
+                Attack(hit.collider.gameObject);
+            }
+        }
+
         if (attackMode == false)
         {
             movement = new Vector2(-1 * 2, -3);
@@ -46,9 +50,14 @@ public class Zombie : MonoBehaviour
 
         timer += Time.deltaTime;
 
-        if (timer <= 2)
+        if (timer >= 2 && attackMode == true)
         {
             enemy.GetComponent<Health>().ModifyHealth(-10);
+
+            if (!enemy.gameObject.activeSelf)
+            {
+                attackMode = false;
+            }
 
             // animation of attack
 

@@ -13,7 +13,7 @@ public class Health : MonoBehaviour
 
     public void ModifyHealth(float damage)
     {
-        internalHealth -= damage;
+        internalHealth += damage;
 
         internalHealth = Mathf.Clamp(internalHealth, 0, startingHealth);
 

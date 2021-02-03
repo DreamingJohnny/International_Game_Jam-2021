@@ -40,7 +40,7 @@ public class Tombstone : MonoBehaviour
 
             if (timer <= 0)
             {
-                Instantiate(zombie, transform.position + new Vector3(2, 0, 0), Quaternion.identity);
+                Instantiate(zombie, transform.position + new Vector3(5, 0, 0), Quaternion.identity);
 
                 displayTimer.gameObject.SetActive(false);
 

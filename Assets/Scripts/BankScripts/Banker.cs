@@ -4,45 +4,65 @@ using UnityEngine;
 
 public class Banker : MonoBehaviour
 {
-    GameObject banker;
-
     public float speed = 10;
-    public Vector2 movement;
+    private Vector2 movement;
 
     public float damage;
 
-    public bool isAttacked;
+    private bool attackMode;
+    private float timer;
+
+    public LayerMask layer;
 
 
     void Start()
     {
-        movement = new Vector2(speed, 0);
-
-        isAttacked = false;
+        attackMode = false;
     }
 
-void Update()
+    private void FixedUpdate()
     {
-        //If not impacted by zombie, moves towards goal.
-        Move();
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right, 2, layer);
 
-        //If impacted by zombie/as in close by zombie, stands still & attacks zombie.
-        Attacking();
+        Debug.DrawRay(transform.position, Vector2.right * 2, Color.red);
 
-        //
-        //
-    }
-
-    void Move()
-    {
-        if(!isAttacked)
+        if (hit.collider != null)
         {
-            transform.Translate(movement * Time.deltaTime);
+            if (hit.collider.tag == ("Zombie"))
+            {
+                Attack(hit.collider.gameObject);
+            }
+        }
+
+        if (attackMode == false)
+        {
+            movement = new Vector2(1 * 2, -3);
+
+            movement *= Time.fixedDeltaTime;
+
+            transform.Translate(movement);
         }
     }
 
-    void Attacking()
+    void Attack(GameObject enemy)
     {
+        attackMode = true;
+
+        timer += Time.deltaTime;
+
+        if (timer >= 2 && attackMode == true)
+        {
+            enemy.GetComponent<Health>().ModifyHealth(-10);
+
+            if (!enemy.gameObject.activeSelf)
+            {
+                attackMode = false;
+            }
+
+            // animation of attack
+
+            timer = 0;
+        }
 
         //First, check if within range of homestead/building. If they are, then attack that.
         //Otherwise, next step is to check if within reach of zombies,
