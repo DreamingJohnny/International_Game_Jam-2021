@@ -7,13 +7,15 @@ public class PlayerController : MonoBehaviour
     [Header("Properties")]
     public float speed = 10;
     private bool stopMovement = true;
-    private float dashCooldown;
+    private float dashCooldown = 0f;
+    private float attackCooldown = 0f;
     public float inputX;
-    private BoxCollider2D playerCollider;
+    public float playerDamage = -50f;
+    public LayerMask layerMask;
 
     private void Start()
     {
-        playerCollider = GetComponent<BoxCollider2D>();
+        
     }
 
     void FixedUpdate()
@@ -21,28 +23,46 @@ public class PlayerController : MonoBehaviour
         if (stopMovement == true)
         {
             inputX = Input.GetAxisRaw("Horizontal");
-        }
-        
+        }        
 
         Vector2 movement = new Vector2(inputX * speed, -3);
         movement *= Time.fixedDeltaTime;
 
         transform.Translate(movement);
 
-        if (dashCooldown >= 0f)
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.left, 5, layerMask);
+        Debug.DrawRay(transform.position, Vector2.left * 5, Color.red);
+
+        
+
+        if (Input.GetKeyDown(KeyCode.Space) && attackCooldown <= 0f)
         {
-            dashCooldown = dashCooldown - Time.deltaTime;
+            if (hit.collider != null)
+            {
+                if (hit.collider.tag == "Enemy")
+                {
+                    Attack(hit.collider.gameObject);
+                }
+            }
         }
     }
 
     private void Update()
     {
+        if (dashCooldown >= 0f)
+        {
+            dashCooldown = dashCooldown - Time.deltaTime;
+        }
+
+        if (attackCooldown >= 0f)
+        {
+            attackCooldown = attackCooldown - Time.deltaTime;
+        }
+
         if (Input.GetKeyDown(KeyCode.S) && dashCooldown <= 0f)
         {
             StartCoroutine(DashTime());
-        }
-
-        Debug.Log(dashCooldown.ToString());
+        }        
     }
 
     IEnumerator DashTime()
@@ -55,5 +75,9 @@ public class PlayerController : MonoBehaviour
         speed = speed - 20f;
     }
 
-    
+    private void Attack(GameObject enemy)
+    {
+        attackCooldown = 1.5f;
+        enemy.GetComponent<Health>().ModifyHealth(playerDamage);
+    }
 }
