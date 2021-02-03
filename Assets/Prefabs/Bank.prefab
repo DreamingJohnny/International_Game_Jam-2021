@@ -144,6 +144,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4505bb0ea7e61f8409dd18c5e71f6af3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waveTime: 10
+  timeBetweenWaves: 10
   currentTime: 0
+  bankerSpacing: 1
+  amountInWave: 4
+  bankersWave: []
   banker: {fileID: 8200673402880224274, guid: 5ede66406944f4a4ca1ce57662bfcd93, type: 3}
