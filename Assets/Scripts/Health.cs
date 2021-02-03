@@ -3,23 +3,35 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     [Header("Properties")]
-    public float startingHealth;
-    public float internalHealth;
+    public float maxHealth;
+    public float currentHealth;
+
+    [Header("Reference")]
+    public HealthBar healthBar;
 
     private void Awake()
     {
-        internalHealth = startingHealth;
+        currentHealth = maxHealth;
+        if (healthBar != null)
+        {
+            healthBar.SetMaxHealth(maxHealth);
+        }
     }
 
     public void ModifyHealth(float damage)
     {
-        internalHealth += damage;
+        currentHealth += damage;
 
-        internalHealth = Mathf.Clamp(internalHealth, 0, startingHealth);
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
 
-        if (internalHealth <= 0)
+        if (healthBar != null)
         {
-            gameObject.SetActive(false);
+            healthBar.SetHealth(currentHealth);
+        }
+
+        if (currentHealth <= 0)
+        {
+            Destroy(gameObject);
         }
     }
 }

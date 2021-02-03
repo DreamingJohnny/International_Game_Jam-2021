@@ -23,7 +23,6 @@ public class PlayerController : MonoBehaviour
             inputX = Input.GetAxisRaw("Horizontal");
         }
         
-
         Vector2 movement = new Vector2(inputX * speed, -3);
         movement *= Time.fixedDeltaTime;
 
@@ -41,8 +40,6 @@ public class PlayerController : MonoBehaviour
         {
             StartCoroutine(DashTime());
         }
-
-        Debug.Log(dashCooldown.ToString());
     }
 
     IEnumerator DashTime()

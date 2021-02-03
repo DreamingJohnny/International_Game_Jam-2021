@@ -28,7 +28,7 @@ public class Banker : MonoBehaviour
 
         if (hit.collider != null)
         {
-            if (hit.collider.tag == ("Zombie"))
+            if (hit.collider.tag == ("Zombie") || hit.collider.tag == ("Homebase"))
             {
                 Attack(hit.collider.gameObject);
             }
