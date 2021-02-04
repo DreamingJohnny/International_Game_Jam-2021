@@ -19,13 +19,12 @@ public class PlayerController : MonoBehaviour
     public float playerDamage = -20f;
 
     public LayerMask playerMask;
+    public LayerMask playerMaskTwo;
 
-    private Walls walls;
     public bool canPlace;
 
     private void Start()
     {
-        walls = FindObjectOfType<Walls>();
         canPlace = false;
     }
 
@@ -86,9 +85,13 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.W) && canPlace == true)
         {
-            walls.PlaceWall();
+            Collider2D[] collders = Physics2D.OverlapCircleAll(transform.position, 3, playerMaskTwo);
+            foreach (var wall in collders)
+            {
+                wall.gameObject.GetComponent<Walls>().PlaceWall();
+            }
         }
-    }
+    }    
 
     IEnumerator DashTime()
     {

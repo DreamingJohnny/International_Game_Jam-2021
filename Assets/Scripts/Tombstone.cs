@@ -108,5 +108,8 @@ public class Tombstone : MonoBehaviour
         timer = timer - 0.2f;
         yield return new WaitForSeconds(0.1f);
     }
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 }

@@ -34,4 +34,10 @@ public class Health : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
+
+    public void ResetHealth()
+    {
+        currentHealth = maxHealth;
+        healthBar.SetHealth(currentHealth);
+    }
 }
