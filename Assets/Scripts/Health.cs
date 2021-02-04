@@ -32,6 +32,16 @@ public class Health : MonoBehaviour
         if (currentHealth <= 0)
         {
             gameObject.SetActive(false);
+
+            if (gameObject.tag == "EnemyBase")
+            {
+                FindObjectOfType<GameManager>().WinGame();
+            }
+            else if (gameObject.tag == "Homebase")
+            {
+                FindObjectOfType<GameManager>().LoseGame();
+            }
+
         }
     }
 }
