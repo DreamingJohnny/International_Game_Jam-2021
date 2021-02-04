@@ -39,7 +39,7 @@ public class Banker : MonoBehaviour
 
         if (hit.collider != null)
         {
-            Attack(hit.collider.gameObject);
+            Attack(hit.collider.gameObject);                     
         }
         else
         {
