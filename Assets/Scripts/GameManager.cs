@@ -10,6 +10,19 @@ public class GameManager : MonoBehaviour
     public Canvas winCanvas;
     public Canvas gameOverCanvas;
 
+    private static GameManager instance;
+    public static GameManager Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = FindObjectOfType<GameManager>();
+            }
+            return instance;
+        }
+    }
+
     private void Start()
     {
         mainMenuCanvas.enabled = false;
