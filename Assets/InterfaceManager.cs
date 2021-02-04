@@ -23,7 +23,7 @@ public class InterfaceManager : MonoBehaviour
 
     private void Start()
     {
-        currencyText.text = CurrencyManager.Instance.Currency.ToString("00");
+        //currencyText.text = CurrencyManager.Instance.Currency.ToString("00");
     }
 
     public void UpdateText()
