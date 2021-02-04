@@ -52,6 +52,11 @@ public class Tombstone : MonoBehaviour
                 canCount = false;
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.Q) && timer > 0f && inCollider == true)
+        {
+            StartCoroutine(SpeedUpGrave());
+        }
     }
 
     private void CheckInput()
@@ -96,6 +101,12 @@ public class Tombstone : MonoBehaviour
         pressE.gameObject.SetActive(false);
 
         canCount = true;
+    }
+
+    IEnumerator SpeedUpGrave()
+    {
+        timer = timer - 0.2f;
+        yield return new WaitForSeconds(0.1f);
     }
 
 }

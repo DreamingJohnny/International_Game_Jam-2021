@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
         //Debug.Log(attackCooldown.ToString());
                
 
-        if (Input.GetKeyDown(KeyCode.Space) && attackCooldown <= 0f)
+        if (Input.GetKey(KeyCode.Space) && attackCooldown <= 0f)
         {
             if (hit.collider != null)
             {
@@ -95,8 +95,13 @@ public class PlayerController : MonoBehaviour
 
     private void Attack(GameObject enemy)
     {
-        attackCooldown = 1.5f;
+        attackCooldown = 3f;
         enemy.GetComponent<Health>().ModifyHealth(playerDamage);
         Debug.Log(enemy.GetComponent<Health>().ToString());
+    }
+
+    private void PlaceWall()
+    {
+
     }
 }
