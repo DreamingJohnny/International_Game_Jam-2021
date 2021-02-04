@@ -20,9 +20,13 @@ public class PlayerController : MonoBehaviour
 
     public LayerMask playerMask;
 
+    private Walls walls;
+    public bool canPlace;
+
     private void Start()
     {
-
+        walls = FindObjectOfType<Walls>();
+        canPlace = false;
     }
 
     void FixedUpdate()
@@ -49,8 +53,6 @@ public class PlayerController : MonoBehaviour
         }
 
         transform.Translate(movement);
-
-        //Debug.Log(attackCooldown.ToString());
                
 
         if (Input.GetKey(KeyCode.Space) && attackCooldown <= 0f)
@@ -81,6 +83,11 @@ public class PlayerController : MonoBehaviour
         {
             StartCoroutine(DashTime());
         }
+
+        if (Input.GetKeyDown(KeyCode.W) && canPlace == true)
+        {
+            walls.PlaceWall();
+        }
     }
 
     IEnumerator DashTime()
@@ -97,11 +104,15 @@ public class PlayerController : MonoBehaviour
     {
         attackCooldown = 3f;
         enemy.GetComponent<Health>().ModifyHealth(playerDamage);
-        Debug.Log(enemy.GetComponent<Health>().ToString());
     }
 
-    private void PlaceWall()
+    public bool GetCanPlace()
     {
+        return canPlace;
+    }
 
+    public void SetCanPlace(bool canPlaceWall)
+    {
+        canPlace = canPlaceWall;
     }
 }
