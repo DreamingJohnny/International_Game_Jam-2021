@@ -7,10 +7,6 @@ public class GameManager : MonoBehaviour
 {
     [Header("Properties")]
     public int startingAmount;
-
-    void Start()
-    {
-        CurrencyManager.Instance.ModifyCurrency(startingAmount);
     public Canvas mainMenuCanvas;
     public Canvas gamePlayCanvas;
     public Canvas winCanvas;
@@ -31,6 +27,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        CurrencyManager.Instance.ModifyCurrency(startingAmount);
         mainMenuCanvas.enabled = false;
 
         gameOverCanvas.enabled = false;

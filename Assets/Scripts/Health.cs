@@ -43,4 +43,10 @@ public class Health : MonoBehaviour
             }
         }
     }
+
+    public void ResetHealth()
+    {
+        currentHealth = maxHealth;
+        healthBar.SetHealth(currentHealth);
+    }
 }
