@@ -57,16 +57,12 @@ public class GameManager : MonoBehaviour
 
     public void GotoMainMenu()
     {
-        if(gamePlayCanvas != null)
             gamePlayCanvas.SetActive(false);
 
-        if (winCanvas != null)
             winCanvas.SetActive(false);
 
-        if (gameOverCanvas != null)
             gameOverCanvas.SetActive(false);
         
-        if (mainMenuCanvas != null)
             mainMenuCanvas.SetActive(true);
     }
 

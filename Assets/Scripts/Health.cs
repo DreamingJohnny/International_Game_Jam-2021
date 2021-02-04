@@ -1,10 +1,13 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Health : MonoBehaviour
 {
     [Header("Properties")]
     public float maxHealth;
     public float currentHealth;
+
+    public UnityEvent onDeath;
 
     [Header("Reference")]
     public HealthBar healthBar;
@@ -31,6 +34,8 @@ public class Health : MonoBehaviour
 
         if (currentHealth <= 0)
         {
+            AudioManager.INSTANCE.PlaySound("ZombieDeath", gameObject.transform.position);
+
             gameObject.SetActive(false);
 
             if (gameObject.tag == "Enemybase")
