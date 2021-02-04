@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 {
     [Header("Properties")]
     public int startingAmount;
-
+    [Space]
     public GameObject mainMenuCanvas;
     public GameObject gamePlayCanvas;
     public GameObject winCanvas;
@@ -45,6 +45,8 @@ public class GameManager : MonoBehaviour
     {
         gamePlayCanvas.SetActive(false);
 
+        AudioManager.INSTANCE.PlaySound("Lose Game", gameObject.transform.position);
+
         gameOverCanvas.SetActive(true);
     }
 
@@ -74,11 +76,15 @@ public class GameManager : MonoBehaviour
     {
         gamePlayCanvas.SetActive(false);
 
+        AudioManager.INSTANCE.PlaySound("Win Game", gameObject.transform.position);
+
         winCanvas.SetActive(true);
     }
 
     public void RestartGame()
     {
+        AudioManager.INSTANCE.PlaySound("Button", gameObject.transform.position);
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

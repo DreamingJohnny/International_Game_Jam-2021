@@ -45,6 +45,8 @@ public class Tombstone : MonoBehaviour
             {
                 Instantiate(zombie, transform.position + new Vector3(0, -2.4f, 0), Quaternion.identity);
 
+                AudioManager.INSTANCE.PlaySound("Zombie Spawn", gameObject.transform.position);
+
                 displayTimer.gameObject.SetActive(false);
                 graveDigger.SetActive(false);
 

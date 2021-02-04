@@ -3,52 +3,53 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-    public class AudioManager : MonoBehaviour
-    {
-        public static AudioManager INSTANCE;
+public class AudioManager : MonoBehaviour
+{
+    public static AudioManager INSTANCE;
 
-        private void Awake()
+    private void Awake()
+    {
+        if (INSTANCE)
         {
-            if (INSTANCE)
-            {
-                Destroy(this);
-            }
-            else
-            {
-                INSTANCE = this;
-                DontDestroyOnLoad(this);
-            }
+            Destroy(this);
         }
+        else
+        {
+            INSTANCE = this;
+            DontDestroyOnLoad(this);
+        }
+    }
 
     private void Start()
     {
-        foreach(var element in audioToPlay)
+        foreach (var element in audioToPlay)
         {
-            AudioSources.Add(element.Name, element.AudioClip);  
+            AudioSources.Add(element.Name, element.AudioClip);
         }
     }
 
     public List<NameAudio> audioToPlay = new List<NameAudio>();
 
-        [Serializable]
-        public struct NameAudio
-        {
-            public string Name;
-            public AudioClip AudioClip;
-        }
+    [Serializable]
+    public struct NameAudio
+    {
+        public string Name;
+        public AudioClip AudioClip;
+    }
 
-        private Dictionary<string, AudioClip> AudioSources = new Dictionary<string, AudioClip>();
+    private Dictionary<string, AudioClip> AudioSources = new Dictionary<string, AudioClip>();
 
-        public void PlaySound(string name, Vector3 postion)
+    public void PlaySound(string name, Vector3 postion)
+    {
+        if (AudioSources.ContainsKey(name))
         {
-            if (AudioSources.ContainsKey(name))
-            {
-                GameObject obj = new GameObject(name);
-                obj.transform.position = postion;
-                AudioSource source = obj.AddComponent<AudioSource>();
-                source.clip = AudioSources[name];
-                source.Play();
-                Destroy(obj, AudioSources[name].length + 1);
-            }
+            GameObject obj = new GameObject(name);
+            obj.transform.position = postion;
+            AudioSource source = obj.AddComponent<AudioSource>();
+            source.clip = AudioSources[name];
+            source.volume = 1.0f;
+            source.Play();
+            Destroy(obj, AudioSources[name].length + 1);
         }
     }
+}

@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Properties")]
     public float speed = 10;
+    public float playerDamage = -20f;
 
     [Header("References")]
     public SpriteRenderer sprite;
@@ -16,7 +17,7 @@ public class PlayerController : MonoBehaviour
     private float dashCooldown = 0f;
     private float attackCooldown = 0f;
 
-    public float playerDamage = -20f;
+    private Vector2 lookDirection;
 
     public LayerMask playerMask;
     public LayerMask playerMaskTwo;
@@ -30,9 +31,6 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.left, 5, playerMask);
-        Debug.DrawRay(transform.position, Vector2.left * 5, Color.red);
-
         if (stopMovement == true)
         {
             inputX = Input.GetAxisRaw("Horizontal");
@@ -41,15 +39,21 @@ public class PlayerController : MonoBehaviour
         Vector2 movement = new Vector2(inputX * speed, -3);
         movement *= Time.fixedDeltaTime;
 
+
         if (inputX == 1)
         {
             sprite.flipX = false;
+            lookDirection = Vector2.right;
         }
 
         if (inputX == -1)
         {
             sprite.flipX = true;
+            lookDirection = Vector2.left;
         }
+
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, lookDirection, 5, playerMask);
+        Debug.DrawRay(transform.position, lookDirection * 5, Color.red);
 
         transform.Translate(movement);
 

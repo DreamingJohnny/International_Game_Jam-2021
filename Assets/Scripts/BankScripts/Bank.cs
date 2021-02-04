@@ -10,7 +10,7 @@ public class Bank : MonoBehaviour
     public float currentTime;
     public float bankerSpacing = 1f;   //spacing between the different bankers as they spawn.
 
-    public int amountInWave = 4;        //Starting number of bankers per wave, increase 
+    public int amountInWave;        //Starting number of bankers per wave, increase 
 
 
     public Banker[] bankersWave;

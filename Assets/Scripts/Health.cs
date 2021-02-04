@@ -33,7 +33,20 @@ public class Health : MonoBehaviour
         {
             gameObject.SetActive(false);
 
-            if (gameObject.tag == "Enemybase")
+            if (gameObject.CompareTag("Zombie"))
+            {
+                AudioManager.INSTANCE.PlaySound("Zombie Death", gameObject.transform.position);
+            }
+
+            if (gameObject.CompareTag("Enemy"))
+            {
+                CurrencyManager.Instance.ModifyCurrency(10);
+                AudioManager.INSTANCE.PlaySound("Coin", gameObject.transform.position);
+                AudioManager.INSTANCE.PlaySound("Banker Death", gameObject.transform.position);
+
+            }
+
+            if (gameObject.tag == "EnemyBase")
             {
                 GameManager.Instance.WinGame();
             }

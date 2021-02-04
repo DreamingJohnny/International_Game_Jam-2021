@@ -5,16 +5,21 @@ using TMPro;
 
 public class Walls : MonoBehaviour
 {
-    private GameObject wall;
+    [Header("Properties")]
+    public int buildPrice;
+
+    [Header("References")]
+    public GameObject wall;
+    public Health wallHealth;
+    public TMP_Text pressW;
+    public GameObject healthBar;
+
     private PlayerController pControl;
     private bool isWallPlaced;
-    public TMP_Text pressW;
 
-    public GameObject healthBar;
 
     void Start()
     {
-        wall = GetComponentInChildren<Health>().gameObject;
         wall.SetActive(false);
         pressW.gameObject.SetActive(false);
         healthBar.SetActive(false);
@@ -33,13 +38,15 @@ public class Walls : MonoBehaviour
 
     public void PlaceWall()
     {
-        if (isWallPlaced == false)
+        if (isWallPlaced == false && CurrencyManager.Instance.Currency >= buildPrice)
         {
             pressW.gameObject.SetActive(false);
             healthBar.SetActive(true);
             wall.SetActive(true);
             isWallPlaced = true;
             GetComponentInChildren<Health>().ResetHealth();
+
+            CurrencyManager.Instance.ModifyCurrency(-buildPrice);
         }
     }
 
