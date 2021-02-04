@@ -59,7 +59,7 @@ public class Banker : MonoBehaviour
 
         if (timer >= 2 && attackMode == true)
         {
-            enemy.GetComponent<Health>().ModifyHealth(-10);
+            enemy.GetComponent<Health>().ModifyHealth(-damage);
 
             if (!enemy.gameObject.activeSelf)
             {

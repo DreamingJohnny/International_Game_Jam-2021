@@ -20,6 +20,7 @@ public class CurrencyManager : MonoBehaviour
     public void ModifyCurrency(int amount)
     {
         Currency += amount;
+        InterfaceManager.Instance.UpdateText();
     }
 }
 
