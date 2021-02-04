@@ -5,12 +5,6 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-<<<<<<< Updated upstream
-    public Canvas mainMenuCanvas;
-    public Canvas gamePlayCanvas;
-    public Canvas winCanvas;
-    public Canvas gameOverCanvas;
-=======
     [Header("Properties")]
     public int startingAmount;
 
@@ -18,7 +12,6 @@ public class GameManager : MonoBehaviour
     public GameObject gamePlayCanvas;
     public GameObject winCanvas;
     public GameObject gameOverCanvas;
->>>>>>> Stashed changes
 
     private static GameManager instance;
     public static GameManager Instance
