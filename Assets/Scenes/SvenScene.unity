@@ -207,6 +207,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 66792707}
+  - component: {fileID: 66792709}
   - component: {fileID: 66792706}
   - component: {fileID: 66792708}
   m_Layer: 0
@@ -255,6 +256,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currencyText: {fileID: 1686221058}
+--- !u!114 &66792709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 66792705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cd5d39c7631c9743a50f848c1f62a39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingAmount: 30
 --- !u!1 &95650533
 GameObject:
   m_ObjectHideFlags: 0
@@ -1123,6 +1137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tombstoneTime: 5
+  spawnPrice: 10
   displayTimer: {fileID: 1896430050}
   pressE: {fileID: 1422919415}
   zombie: {fileID: 5744094535347418553, guid: 07952d78a9b4726458687aa475b2a0f3, type: 3}
@@ -1819,7 +1834,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1422919414
 RectTransform:
   m_ObjectHideFlags: 0

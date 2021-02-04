@@ -7,6 +7,7 @@ public class Tombstone : MonoBehaviour
 {
     [Header("Properties")]
     public float tombstoneTime;
+    public int spawnPrice;
 
     [Header("References")]
     public TMP_Text displayTimer;
@@ -56,8 +57,10 @@ public class Tombstone : MonoBehaviour
 
     private void CheckInput()
     {
-        if (Input.GetKeyDown(KeyCode.E) && inCollider == true)
+        if (Input.GetKeyDown(KeyCode.E) && inCollider == true && CurrencyManager.Instance.Currency >= spawnPrice && canCount == false)
         {
+            CurrencyManager.Instance.ModifyCurrency(-spawnPrice);
+
             StartTombstone();
         }
     }
@@ -97,5 +100,4 @@ public class Tombstone : MonoBehaviour
 
         canCount = true;
     }
-
 }
