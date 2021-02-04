@@ -5,10 +5,20 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+<<<<<<< Updated upstream
     public Canvas mainMenuCanvas;
     public Canvas gamePlayCanvas;
     public Canvas winCanvas;
     public Canvas gameOverCanvas;
+=======
+    [Header("Properties")]
+    public int startingAmount;
+
+    public GameObject mainMenuCanvas;
+    public GameObject gamePlayCanvas;
+    public GameObject winCanvas;
+    public GameObject gameOverCanvas;
+>>>>>>> Stashed changes
 
     private static GameManager instance;
     public static GameManager Instance
@@ -25,45 +35,53 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        mainMenuCanvas.enabled = false;
+        CurrencyManager.Instance.ModifyCurrency(startingAmount);
 
-        gameOverCanvas.enabled = false;
+        mainMenuCanvas.SetActive(false);
         
-        gamePlayCanvas.enabled = true;
+        gameOverCanvas.SetActive(false);
+        
+        gamePlayCanvas.SetActive(false);
 
-        winCanvas.enabled = false;
+        winCanvas.SetActive(false);
+
+        StartGame();
     }
 
     public void LoseGame()
     {
-        gamePlayCanvas.enabled = false;
+        gamePlayCanvas.SetActive(false);
 
-        gameOverCanvas.enabled = true;
-
-        Debug.Log("Your farm was destroyed!");
+        gameOverCanvas.SetActive(true);
     }
 
     public void StartGame()
     {
-        mainMenuCanvas.enabled = false;
+        mainMenuCanvas.SetActive(false);
 
-        gamePlayCanvas.enabled = true;
+        gamePlayCanvas.SetActive(true);
     }
 
     public void GotoMainMenu()
     {
-        gamePlayCanvas.enabled = false;
+        if(gamePlayCanvas != null)
+            gamePlayCanvas.SetActive(false);
 
-        mainMenuCanvas.enabled = true;
+        if (winCanvas != null)
+            winCanvas.SetActive(false);
+
+        if (gameOverCanvas != null)
+            gameOverCanvas.SetActive(false);
+        
+        if (mainMenuCanvas != null)
+            mainMenuCanvas.SetActive(true);
     }
 
     public void WinGame()
     {
-        Debug.Log("Bank Destroyed");
+        gamePlayCanvas.SetActive(false);
 
-        gamePlayCanvas.enabled = false;
-
-        winCanvas.enabled = true;
+        winCanvas.SetActive(true);
     }
 
     public void RestartGame()
