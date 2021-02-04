@@ -7,7 +7,7 @@ TagManager:
   - Enemy
   - Zombie
   - Homebase
-  - Wall
+  - EnemyBase
   layers:
   - Default
   - TransparentFX
