@@ -87,7 +87,5 @@ public class Zombie : MonoBehaviour
     {
         float tempNumber = Random.Range(0.0f, 1.5f);
         yield return new WaitForSeconds(tempNumber);
-        print(tempNumber);
-
     }
 }

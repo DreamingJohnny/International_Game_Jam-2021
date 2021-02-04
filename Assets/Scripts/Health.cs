@@ -33,15 +33,14 @@ public class Health : MonoBehaviour
         {
             gameObject.SetActive(false);
 
-            if (gameObject.tag == "EnemyBase")
+            if (gameObject.tag == "Enemybase")
             {
-                FindObjectOfType<GameManager>().WinGame();
+                GameManager.Instance.WinGame();
             }
             else if (gameObject.tag == "Homebase")
             {
-                FindObjectOfType<GameManager>().LoseGame();
+                GameManager.Instance.LoseGame();
             }
-
         }
     }
 }
