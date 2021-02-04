@@ -5,6 +5,7 @@ public class Health : MonoBehaviour
     [Header("Properties")]
     public float maxHealth;
     public float currentHealth;
+    public int rewardForKilling;
 
     [Header("Reference")]
     public HealthBar healthBar;
@@ -32,6 +33,7 @@ public class Health : MonoBehaviour
         if (currentHealth <= 0)
         {
             gameObject.SetActive(false);
+            CurrencyManager.Instance.ModifyCurrency(rewardForKilling);
         }
     }
 }
